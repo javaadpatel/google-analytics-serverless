@@ -1,5 +1,6 @@
 'use strict';
 require('dotenv').config();
+require('encoding');
 const express = require('express');
 const path = require('path');
 const serverless = require('serverless-http');
