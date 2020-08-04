@@ -63,7 +63,16 @@ router.get('/getViewsByPagePath', async (req, res) => {
 });
 
 
+//add json parsing middleware
 app.use(bodyParser.json());
+
+//add cors middleware
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", process.env.ALLOWED_ORIGIN);
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use('/.netlify/functions/server', router);  // path must route to lambda
 
 module.exports = app;
